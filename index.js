@@ -11,14 +11,10 @@ var started = false;
 function nextSequence(){
     userClickedPattern=[];
     randomNumber = Math.floor(Math.random()*4);
-    //console.log(randomNumber);
     randomChosenColor = buttonColor[randomNumber];
-    //console.log(randomChosenColor);
     gamePattern.push(randomChosenColor);
-    //console.log(gamePattern);
     $("h1").html("Level "+level);
     level+=1;
-
     $("#"+randomChosenColor).fadeOut(1).fadeIn();
         //$("#"+gamePattern).fadeToggle(0.5);
         //$("#"+gamePattern).fadeToggle();
@@ -29,9 +25,7 @@ function nextSequence(){
 
 $(".btn").click(function(id){
     var userChosenColor = this.id;
-        //console.log(userChosenColor);
     userClickedPattern.push(userChosenColor);
-        //console.log(userClickedPattern);
     playSound(userChosenColor);
     animatePress(userChosenColor);  
     checkAnswer(userClickedPattern.length-1);
@@ -51,9 +45,9 @@ function playSound(name){
  }
 
 function checkAnswer(currentLevel){
-    //console.log(currentLevel);
+    
     if(userClickedPattern[currentLevel] === gamePattern[currentLevel]){
-            //console.log("successful");
+            
         if(userClickedPattern.length === gamePattern.length){
             setTimeout(function(){
                 nextSequence();
@@ -61,7 +55,7 @@ function checkAnswer(currentLevel){
         }
     }
     else{
-            //console.log("Sorry try again");
+           
         var audio = new Audio("sounds/wrong.mp3");
         audio.play();
         $("h1").html("GAME OVER! PRESS ANY KEY TO RESTART");
